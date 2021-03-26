@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <title>Preço</title>
+</head>
+<body class="container">
+ 
+<br>
+<h3>Preço m²</h3>
+<br>
+<hr>
+<table>
+    <tr><td>Quantidade (m²):</td><td><input type="text" class="qtd form-control" value="0"></td></tr>
+    <tr>
+        <td>Tamanho (cm²): </td>
+        <td>
+            <select id="centimetro" class="centimetro form-control">
+                <option value="0.09">30 cm</option>
+                <option value="0.25">50 cm</option>
+                <option value="0.36">60 cm</option>
+            </select>
+        </td>
+    </tr>
+</table>
+
+<hr>
+<br>
+
+Placas: <span class="qtdplacas"></span>
+<br>
+Valor por <span class="qtdfinal"></span >m²: <span class="qtdfinal2"></span>
+<br>
+<br>
+1m² = R$60,00
+
+<script>
+
+let quantidade = document.querySelector(".qtd");
+let centimetro = document.querySelector(".centimetro");
+
+quantidade.addEventListener("keyup", calcula);
+centimetro.addEventListener("change", calcula);
+
+function calcula(){
+let qtd = parseFloat(document.querySelector(".qtd").value.replace(",","."), 10);
+let cent = parseFloat(document.querySelector(".centimetro").value, 10);
+let qtdplacas = qtd / cent;
+
+if(document.querySelector(".qtd").value != ""){
+document.querySelector(".qtdplacas").textContent = qtdplacas.toFixed(2);
+document.querySelector(".qtdfinal").textContent = qtd;
+document.querySelector(".qtdfinal2").textContent = (parseFloat(qtd, 10) * 60).toFixed(2);
+
+document.querySelector(".qtdplacas").style.color = "orange";
+document.querySelector(".qtdfinal2").style.color = "orange";
+}
+else{
+    document.querySelector(".qtdplacas").textContent = "";
+    document.querySelector(".qtdfinal").textContent = "";
+    document.querySelector(".qtdfinal2").textContent = "";
+}
+}
+
+
+</script>
+
+</body>
+</html>
